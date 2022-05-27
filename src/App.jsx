@@ -12,9 +12,9 @@ export default function App() {
   const [allWaves, setAllWaves] = useState([]);
   const [waveMsg, setWaveMsg] = useState("");
 
-  useEffect(() => {
-    checkIfWalletIsConnected();
-    getAllWaves();
+  useEffect(async () => {
+    await checkIfWalletIsConnected();
+    await initWaves();
   }, []);
 
   const initWaves = async () => {
@@ -78,7 +78,7 @@ export default function App() {
       const account = accounts[0];
       console.log("Found an authorized account:", account);
       setCurrentAccount(account)
-      getAllWaves()
+      initWaves()
     } else {
       console.log("No authorized account found")
     }
